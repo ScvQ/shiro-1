@@ -39,5 +39,14 @@
            overflowToDisk="false"
            statistics="true">
     </cache>
+    <!-- 验证码分布式缓存-->
+    <cache name="jcaptchaCache"
+           maxEntriesLocalHeap="2000"
+           eternal="false"
+           timeToIdleSeconds="360000"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"
+           statistics="true">
+    </cache>
 
 </ehcache>

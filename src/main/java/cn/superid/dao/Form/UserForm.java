@@ -7,6 +7,15 @@ public class UserForm {
     private String username;
     private String password;
     private boolean rememberMe;
+    private String validationCode;
+
+    public String getValidationCode() {
+        return validationCode;
+    }
+
+    public void setValidationCode(String validationCode) {
+        this.validationCode = validationCode;
+    }
 
     public boolean isRememberMe() {
         return rememberMe;

@@ -167,6 +167,29 @@
             <artifactId>xmemcached-provider</artifactId>
             <version>3.5.0</version>
         </dependency>
+        <!-- jcaptcha 验证码 -->
+        <dependency>
+            <groupId>com.octo.captcha</groupId>
+            <artifactId>jcaptcha-api</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.octo.captcha</groupId>
+            <artifactId>jcaptcha</artifactId>
+            <version>2.0-alpha-1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.octo.captcha</groupId>
+            <artifactId>jcaptcha-integration-simple-servlet</artifactId>
+            <version>2.0-alpha-1</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>servlet-api</artifactId>
+                    <groupId>javax.servlet</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -190,6 +213,7 @@
                 <version>2.2</version>
                 <configuration>
                     <path>/${project.build.finalName}</path>
+
                 </configuration>
 
             </plugin>

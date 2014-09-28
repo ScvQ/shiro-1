@@ -22,16 +22,8 @@
                                 expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
     </context:component-scan>
 
-
     <mvc:annotation-driven>
-        <mvc:argument-resolvers>
-            <bean class="cn.superid.web.bind.method.CurrentUserMethodArgumentResolver"/>
-        </mvc:argument-resolvers>
     </mvc:annotation-driven>
-
-    <!-- 当在web.xml 中   DispatcherServlet使用 <url-pattern>/</url-pattern> 映射时，能映射静态资源 -->
-    <mvc:default-servlet-handler/>
-
 
     <bean id="exceptionHandlerExceptionResolver" class="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver">
     </bean>
@@ -53,8 +45,7 @@
         <property name="ignoreAcceptHeader" value="true"></property>
         <property name="defaultContentType" value="application/json"></property>
     </bean>
-    <!-- 控制器异常处理 -->
-    <bean class="cn.superid.web.exception.DefaultExceptionHandler"/>
+
 
     <mvc:default-servlet-handler/>
     <mvc:interceptors>

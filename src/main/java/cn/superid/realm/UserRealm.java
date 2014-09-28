@@ -12,11 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Set;
 
-/**
- * <p>User: zp
- * <p>Date: 14-1-28
- * <p>Version: 1.0
- */
 public class UserRealm extends AuthorizingRealm {
 
     @Autowired
