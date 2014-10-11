@@ -13,21 +13,19 @@ import javax.servlet.http.HttpServletRequest;
 
 public class JCaptcha {
 
-    public static DefaultManageableImageCaptchaService captchaService =new DefaultManageableImageCaptchaService(new FastHashMapCaptchaStore(), new GMailEngine(), 180, 100000, 75000);;
+    public static DefaultManageableImageCaptchaService captchaService = new DefaultManageableImageCaptchaService(new FastHashMapCaptchaStore(), new GMailEngine(), 180, 100000, 75000);
 
     private JCaptcha(){}
 
     public static boolean validateResponse(HttpServletRequest request, String userCaptchaResponse) {
-        if (request.getSession(false) == null) return false;
 
         boolean validated = false;
         try {
-            String id = request.getSession().getId();
+            String id = request.getRequestedSessionId();
             validated = captchaService.validateResponseForID(id, userCaptchaResponse).booleanValue();
         } catch (CaptchaServiceException e) {
             e.printStackTrace();
         }
         return validated;
     }
-
 }
