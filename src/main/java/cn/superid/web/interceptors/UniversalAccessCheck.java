@@ -13,7 +13,10 @@ public class UniversalAccessCheck extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:8888");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        response.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, OPTIONS, HEAD");
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With");
         return super.preHandle(request, response, handler);
     }
 

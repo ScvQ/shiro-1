@@ -6,6 +6,7 @@ import cn.superid.dao.Form.UserForm;
 import cn.superid.entity.UserEntity;
 import cn.superid.jcaptcha.JCaptcha;
 import cn.superid.service.IUserService;
+import com.octo.captcha.service.image.DefaultManageableImageCaptchaService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -32,7 +33,8 @@ import java.io.IOException;
 public class testController {
     @Autowired
     private IUserService userService;
-
+    @Autowired
+    private  DefaultManageableImageCaptchaService captchaService;
     @RequestMapping(value = "/user/login", method = RequestMethod.POST)
     public SimpleResponse showLoginForm(UserForm userForm) {
         if (SecurityUtils.getSubject().isAuthenticated()) {
@@ -54,7 +56,7 @@ public class testController {
 
     @RequestMapping(value = "/user/register", method = RequestMethod.POST)
     public SimpleResponse register(HttpServletRequest request) {
-        if(!JCaptcha.validateResponse(request,request.getParameter("validationCode")))
+        if(!captchaService.validateResponseForID(request.getRequestedSessionId(),request.getParameter("validationCode")))
         {
             return new SimpleResponse(1,"validationCode error");
         }
@@ -84,7 +86,8 @@ public class testController {
         response.setHeader("Pragma", "no-cache");
         response.setContentType("image/jpeg");
         String id = request.getRequestedSessionId();
-        BufferedImage bi = JCaptcha.captchaService.getImageChallengeForID(id);
+
+        BufferedImage bi = captchaService.getImageChallengeForID(id);
         ServletOutputStream out = null;
         try {
             out = response.getOutputStream();

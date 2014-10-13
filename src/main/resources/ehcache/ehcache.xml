@@ -40,7 +40,7 @@
            statistics="true">
     </cache>
     <!-- 验证码分布式缓存-->
-    <cache name="jcaptchaCache"
+    <cache name="jCaptchaCache"
            maxEntriesLocalHeap="2000"
            eternal="false"
            timeToIdleSeconds="360000"
